@@ -7,17 +7,12 @@ declare var process;
 @Injectable()
 export class SocketService {
     private socket: SocketIOClient.Socket;
-    private protocol: string;
-    private host: string;
-    private port: string;
-    private namespace: string;
+    private protocol: string = process.env.TARGET_SERVER_PROTOCOL;
+    private host: string = process.env.TARGET_SERVER_HOST;
+    private port: string = process.env.TARGET_SERVER_PORT;
+    private namespace: string = process.env.TARGET_SERVER_NAMESPACE;
 
-    constructor() {
-      this.protocol = process.env.TARGET_SERVER_PROTOCOL;
-      this.host = process.env.NODE_ENV;
-      this.port = process.env.TARGET_SERVER_PORT;
-      this.namespace = process.env.TARGET_SERVER_NAMESPACE;
-    }
+    constructor() {}
 
     open(): SocketIOClient.Socket {
         console.log("SOCKET");

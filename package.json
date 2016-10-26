@@ -13,9 +13,10 @@
   },
   "scripts": {
     "test": "tsc",
-    "webpack": "webpack --watch",
+    "webpack": "webpack",
     "lite": "lite-server",
-    "start": "concurrently \"npm run webpack\" \"npm run lite\" "
+    "start": "npm run lite",
+    "postinstall": "npm run webpack"
   },
   "keywords": [
     "Angular2",

@@ -1,0 +1,19 @@
+<div class="row" style="border-bottom:1px solid #ddd">
+	<div class="col-sm-8">
+		<h2>{{title}}</h2>
+	</div>
+	<div class="col-sm-4 top-buffer" [ngStyle]="{'display': !mapComponent.myRegister ? 'block' : 'none'}">
+		Be a donor! Just find your address and click on the street.
+	</div>
+</div>
+<div class="row">
+  <div class="col-sm-16">
+    <esri-map [itemId]="itemId" [options]="mapOptions" (mapLoaded)="onMapLoad($event)"></esri-map>
+  </div>
+</div>
+
+<app-iamdoner [ngStyle]="{'display': mapComponent.myRegister ? 'block' : 'none'}">
+	<div class="app-iamdoner-body">
+		<strong>I already am a doner! [<a href="#" (click)="mapComponent.editRegister()">Edit</a> | <a href="#" (click)="mapComponent.unsubscribeModal.show()">Unsubscribe</a>]</strong>
+	</div>
+</app-iamdoner>

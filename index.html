@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Blood Donation Finder</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.18/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="//js.arcgis.com/3.16/esri/themes/calcite/esri/esri.css">
+    <link rel="stylesheet" href="app/styles/main.css">
+    <link rel="stylesheet" href="app/styles/vendor.css">
+    
+    <script>
+      window.dojoConfig = {
+        async: true
+      };
+    </script>
+    <script src="https://js.arcgis.com/3.16/"></script>
+    <script>
+      require(["/dist/vendor.bundle.js", "/dist/main.bundle.js"], function (vendor, main) {});
+    </script>
+  </head>
+
+  <body class="calcite">
+    <div class="container-fluid">
+      <app>Loading...</app>
+    </div>
+  </body>  
+</html>

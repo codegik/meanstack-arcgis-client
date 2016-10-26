@@ -1,0 +1,175 @@
+<div><esri-search [options]="searchOptions"></esri-search></div>
+<div class="row">
+
+	<form (ngSubmit)="addDonor()" #modalForm="ngForm">
+	  <app-modal #registerDonorModal>
+	    <div class="app-modal-header">
+	      <h3>Donor Registration</h3> 
+	    </div>
+	    <div class="app-modal-body">
+			<section class="form-horizontal">
+				<div class="form-group">
+					<label for="address" class="col-md-3 control-label">Address*</label>
+					<div class="col-md-9">
+						<input class="form-control" name="address" [(ngModel)]="donor.address.Address" #address="ngModel" required placeholder="Address" type="text" [readonly]="true">
+						<div [hidden]="address.valid || address.pristine" class="alert alert-danger">
+	          				Address is required
+	        			</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="firstName" class="col-md-3 control-label">First name*</label>
+					<div class="col-md-9">
+						<input class="form-control" name="firstName" [(ngModel)]="donor.firstName" #firstName="ngModel" required placeholder="First name" type="text">
+						<div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+	          				First name is required
+	        			</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="lastName" class="col-md-3 control-label">Last name*</label>
+					<div class="col-md-9">
+						<input class="form-control" name="lastName" [(ngModel)]="donor.lastName" #lastName="ngModel" required placeholder="Last name" type="text">
+						<div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+	          				Last name is required
+	        			</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="contactNumber" class="col-md-3 control-label">Contact number*</label>
+					<div class="col-md-9">
+						<input class="form-control" name="contactNumber" [(ngModel)]="donor.contactNumber" #contactNumber="ngModel" required [textMask]="contactMask" type="text">
+						<div [hidden]="contactNumber.valid || contactNumber.pristine" class="alert alert-danger">
+	          				Contact number is required
+	        			</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="emailAddress" class="col-md-3 control-label">Email address*</label>
+					<div class="col-md-9">
+						<input class="form-control" name="emailAddress" [(ngModel)]="donor.emailAddress" #emailAddress="ngModel" required placeholder="Email address" type="email">
+						<div [hidden]="emailAddress.valid || emailAddress.pristine" class="alert alert-danger">
+	          				Email address is required
+	        			</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="bloodGroup" class="col-md-3 control-label">Blood group*</label>
+					<div class="col-md-9">
+						<select class="form-control" name="bloodGroup" [(ngModel)]="donor.bloodGroup" #bloodGroup="ngModel" required>
+							<option value="">Select</option>
+							<option value="O+">O+</option>
+							<option value="A+">A+</option>
+							<option value="B+">B+</option>
+							<option value="AB+">AB+</option>
+							<option value="O-">O-</option>
+							<option value="A-">A-</option>
+							<option value="B-">B-</option>
+							<option value="AB-">AB-</option>
+						</select>
+						<div [hidden]="bloodGroup.valid || bloodGroup.pristine" class="alert alert-danger">
+	          				Blood group is required
+	        			</div>
+					</div>
+				</div>
+			</section>
+	    </div>
+	    <div class="app-modal-footer">
+	      <button type="button" class="btn btn-default" (click)="registerDonorModal.hide()">Cancel</button>
+	      <button type="submit" class="btn btn-primary" [disabled]="!modalForm.form.valid">Save changes</button>
+	    </div>
+	  </app-modal>
+	</form>
+
+  <app-modal #viewDonorModal>
+    <div class="app-modal-header">
+      <h3>View Donor Information</h3> 
+    </div>
+    <div class="app-modal-body">
+		<section class="form-horizontal" *ngIf="viewDonor">
+			<div class="form-group">
+				<label for="address" class="col-md-3 control-label">Address</label>
+				<div class="col-md-9">
+					<input class="form-control" name="address" [(ngModel)]="viewDonor.address.Address" type="text" [readonly]="true">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="firstName" class="col-md-3 control-label">First name</label>
+				<div class="col-md-9">
+					<input class="form-control" name="firstName" [(ngModel)]="viewDonor.firstName" type="text" [readonly]="true">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="lastName" class="col-md-3 control-label">Last name</label>
+				<div class="col-md-9">
+					<input class="form-control" name="lastName" [(ngModel)]="viewDonor.lastName" type="text" [readonly]="true">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="contactNumber" class="col-md-3 control-label">Contact number</label>
+				<div class="col-md-9" [hidden]="!contactNumberDisplay">
+					<input class="form-control" name="contactNumber" [(ngModel)]="viewDonor.contactNumber" type="text" [readonly]="true">
+				</div>
+				<div class="col-md-9" [hidden]="contactNumberDisplay">
+					<a href="#" (click)="contactNumberDisplay = !contactNumberDisplay">Show contact</a>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="emailAddress" class="col-md-3 control-label">Email address</label>
+				<div class="col-md-9" [hidden]="!emailAddressDisplay">
+					<input class="form-control" name="emailAddress" [(ngModel)]="viewDonor.emailAddress" type="email" [readonly]="true">
+				</div>
+				<div class="col-md-9" [hidden]="emailAddressDisplay">
+					<a href="#" (click)="emailAddressDisplay = !emailAddressDisplay">Show email</a>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="bloodGroup" class="col-md-3 control-label">Blood group</label>
+				<div class="col-md-9">
+					<input class="form-control" name="bloodGroup" [(ngModel)]="viewDonor.bloodGroup" type="text" [readonly]="true">
+				</div>
+			</div>
+		</section>
+    </div>
+    <div class="app-modal-footer">
+      <button type="button" class="btn btn-default" (click)="contactNumberDisplay=false;emailAddressDisplay=false;viewDonorModal.hide()">Close</button>
+    </div>
+  </app-modal>
+  
+  <app-modal #unsubscribeModal>
+    <div class="app-modal-header">
+      <h3>Unsubscribe Registration</h3> 
+    </div>
+    <div class="app-modal-body">
+    	Do you really want remove your register?
+    </div>
+    <div class="app-modal-footer">
+      <button type="button" class="btn btn-default" (click)="unsubscribeModal.hide()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="unsubscribe()">Yes</button>
+    </div>
+  </app-modal>
+
+  <app-modal #successModal>
+    <div class="app-modal-header">
+    	<div class="alert alert-success">Donor Registration Successful!</div>
+    </div>
+    <div class="app-modal-body">
+		<div>Thank you, now you are a doner.</div>
+    </div>
+    <div class="app-modal-footer">
+      <button type="button" class="btn btn-success" (click)="successModal.hide()">OK</button>
+    </div>
+  </app-modal>
+
+  <app-modal #failModal>
+    <div class="app-modal-header">
+    	<div class="alert alert-danger">Donor Registration Failed</div>
+    </div>
+    <div class="app-modal-body">
+		<div>There was an error processing your request.</div>
+    </div>
+    <div class="app-modal-footer">
+      <button type="button" class="btn btn-warning" (click)="failModal.hide()">Close</button>
+    </div>
+  </app-modal>
+</div>

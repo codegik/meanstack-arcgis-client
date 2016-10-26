@@ -8,7 +8,7 @@ declare var process;
 export class SocketService {
     private socket: SocketIOClient.Socket;
     private protocol = process.env.TARGET_SERVER_PROTOCOL;
-    private host = process.env.TARGET_SERVER_HOST;
+    private host = process.env;
     private port = process.env.TARGET_SERVER_PORT;
     private namespace = process.env.TARGET_SERVER_NAMESPACE;
 

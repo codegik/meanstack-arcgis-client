@@ -13,7 +13,7 @@
   },
   "scripts": {
     "test": "tsc",
-    "webpack": "webpack",
+    "webpack": "./node_modules/.bin/webpack",
     "lite": "lite-server",
     "start": "npm run lite",
     "postinstall": "npm run webpack"

@@ -11,11 +11,11 @@
   },
   "scripts": {
     "test": "tsc",
-    "webpack": "./node_modules/.bin/webpack --watch",
+    "webpack": "webpack --watch",
     "lite": "lite-server",
     "start": "concurrently \"npm run webpack\" \"npm run lite\" ",
-    "postinstall": "./node_modules/.bin/typings install",
-    "typings": "./node_modules/.bin/typings"
+    "postinstall": "typings install",
+    "typings": "typings"
   },
   "keywords": [
     "Angular2",

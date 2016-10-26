@@ -15,8 +15,7 @@
     "test": "tsc",
     "webpack": "webpack --watch",
     "lite": "lite-server",
-    "start": "concurrently \"npm run webpack\" \"npm run lite\" ",
-    "postinstall": "./node_modules/.bin/typings install"
+    "start": "concurrently \"npm run webpack\" \"npm run lite\" "
   },
   "keywords": [
     "Angular2",

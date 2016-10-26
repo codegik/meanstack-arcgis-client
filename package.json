@@ -16,8 +16,7 @@
     "webpack": "webpack --watch",
     "lite": "lite-server",
     "start": "concurrently \"npm run webpack\" \"npm run lite\" ",
-    "postinstall": "./node_modules/.bin/typings install",
-    "typings": "./node_modules/.bin/typings"
+    "postinstall": "./node_modules/.bin/typings install"
   },
   "keywords": [
     "Angular2",

@@ -26,7 +26,6 @@ node_modules
 
 *.js.map
 
-typings
 bin
 dist
 target

@@ -13,10 +13,9 @@
   },
   "scripts": {
     "test": "tsc",
-    "webpack": "./node_modules/.bin/webpack",
     "lite": "lite-server",
     "start": "npm run lite",
-    "postinstall": "npm run webpack"
+    "postinstall": "./node_modules/.bin/webpack"
   },
   "keywords": [
     "Angular2",

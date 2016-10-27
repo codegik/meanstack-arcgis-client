@@ -3,8 +3,6 @@ import * as io        from "socket.io-client";
 
 declare var process;
 
-console.log(process);
-
 
 @Injectable()
 export class SocketService {
@@ -17,10 +15,8 @@ export class SocketService {
     constructor() {}
 
     open(): SocketIOClient.Socket {
-        console.log("SOCKET");
-        console.log(this.socket);
         if (!this.socket || !this.socket.connected) {
-            let socketUrl = this.protocol + "://" + this.host + ":" + this.port + this.namespace;
+            let socketUrl = this.protocol + "//" + this.host + ":" + this.port + this.namespace;
             this.socket = io.connect(socketUrl);
             this.socket.on("connect", () => this.connect());
             this.socket.on("disconnect", () => this.disconnect());

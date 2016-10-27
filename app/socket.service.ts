@@ -3,14 +3,16 @@ import * as io        from "socket.io-client";
 
 declare var process;
 
+console.log(process);
+
 
 @Injectable()
 export class SocketService {
     private socket: SocketIOClient.Socket;
-    private protocol: string = process.env.TARGET_SERVER_PROTOCOL;
-    private host: string = process.env.TARGET_SERVER_HOST;
-    private port: string = process.env.TARGET_SERVER_PORT;
-    private namespace: string = process.env.TARGET_SERVER_NAMESPACE;
+    private protocol = 'https';
+    private host = 'arcane-mountain-81855.herokuapp.com';
+    private port = '';
+    private namespace = '/map';
 
     constructor() {}
 
@@ -18,7 +20,7 @@ export class SocketService {
         console.log("SOCKET");
         console.log(this.socket);
         if (!this.socket || !this.socket.connected) {
-            let socketUrl = this.protocol + "//" + this.host + ":" + this.port + this.namespace;
+            let socketUrl = this.protocol + "//" + this.host + this.namespace;
             this.socket = io.connect(socketUrl);
             this.socket.on("connect", () => this.connect());
             this.socket.on("disconnect", () => this.disconnect());

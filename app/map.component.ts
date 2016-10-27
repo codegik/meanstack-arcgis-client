@@ -200,6 +200,9 @@ export class MapComponent {
         } else {
             this.registerDonorModal.hide();
             this.successModal.show();
+            console.log("AKKKIII");
+            console.log(response.object);
+            this.findMyRegisterResponse(response.object);
         }
     }
 }

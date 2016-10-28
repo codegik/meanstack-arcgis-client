@@ -7,10 +7,10 @@ declare var process;
 @Injectable()
 export class SocketService {
     private socket: SocketIOClient.Socket;
-    private protocol = process.env.TARGET_SERVER_PROTOCOL || window.location.protocol;
-    private host = process.env.TARGET_SERVER_HOST || window.location.hostname;
-    private port = process.env.TARGET_SERVER_PORT || 5000;
-    private namespace = process.env.TARGET_SERVER_NAMESPACE || '/map';
+    private protocol = 'https';
+    private host = 'arcane-mountain-81855.herokuapp.com';
+    private port = '80';
+    private namespace = '/map';
 
     constructor() {}
 

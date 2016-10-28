@@ -16,7 +16,7 @@ export class SocketService {
 
     open(): SocketIOClient.Socket {
         if (!this.socket || !this.socket.connected) {
-            let socketUrl = this.protocol + "//" + this.host + ":" + this.port + this.namespace;
+            let socketUrl = this.protocol + "://" + this.host + ":" + this.port + this.namespace;
             this.socket = io.connect(socketUrl);
             this.socket.on("connect", () => this.connect());
             this.socket.on("disconnect", () => this.disconnect());

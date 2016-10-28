@@ -92,7 +92,7 @@ export class MapService {
         console.log(donor);
         if (map.graphics && map.graphics.graphics) {
             for (let entry of map.graphics.graphics) {
-                if (entry.attributes && entry.attributes._id == donor._id) {
+                if (entry.attributes && entry.attributes.emailAddress == donor.emailAddress) {
                     map.graphics.remove(entry);
                     break;
                 }

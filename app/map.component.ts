@@ -88,6 +88,7 @@ export class MapComponent {
         this.socket.on("findedDonorsResponse", (donors: IDonor[]) => this.findedDonorsResponse(donors) );
         this.socket.on("findMyRegisterResponse", (donor: IDonor) => this.findMyRegisterResponse(donor) );
         this.socket.on("addedDonorResponse", (response: IResponse) => this.addedDonorResponse(response) );
+        this.socket.on("updatedDonerResponse", (response: IResponse) => this.updatedDonerResponse(response) );
         this.socket.on("addedDonor", (donor: IDonor) => this.addedDonor(donor) );
         this.socket.on("updatedDoner", (donor: IDonor) => this.updatedDoner(donor) );
         this.socket.on("unsubscribed", (donor: IDonor) => this.unsubscribed(donor) );
@@ -201,6 +202,18 @@ export class MapComponent {
             this.registerDonorModal.hide();
             this.successModal.show();
             this.findMyRegisterResponse(response.object);
+            this.addedDonor(response.object);
         }
+    }
+    
+    
+    private updatedDonerResponse(response: IResponse) {
+    	if (response.error) {
+    		this.failModal.show();
+    	} else {
+    		this.registerDonorModal.hide();
+    		this.successModal.show();
+    		this.updatedDoner(response.object);
+    	}
     }
 }
